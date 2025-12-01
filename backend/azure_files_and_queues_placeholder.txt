@@ -1,0 +1,26 @@
+This file is a placeholder note:
+
+- Azure Files and Azure Tables/Queues discovery is not yet implemented in code.
+- Implementing full support requires adding new Azure SDK dependencies:
+  - azure-storage-file-share
+  - azure-data-tables
+  - azure-storage-queue
+- Due to environment/package constraints, these are not wired up automatically here.
+
+Design (for future implementation):
+- Use the same credentials as the Azure Blob connector (account name/key or connection string).
+- For Azure Files:
+  - Use ShareServiceClient to list shares and files.
+  - Create assets of type "Azure File" with share as catalog.
+- For Tables:
+  - Use TableServiceClient to list tables.
+  - Create assets of type "Azure Table".
+- For Queues:
+  - Use QueueServiceClient to list queues.
+  - Create assets of type "Azure Queue".
+
+Current state:
+- Blob Storage + ADLS Gen2 containers and blobs are discovered via existing azure_blob.py.
+- Azure Files and Tables/Queues are not yet discovered.
+
+

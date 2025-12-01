@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #1f2937;
+  background-color: #fafafa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure all body text uses Roboto */
+body, p, span, div, a, button, input, textarea, select, label, li, td, th {
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: none !important;
+}
+
+/* Only override root container constraints */
+#root {
+  max-width: none !important;
+}
+
+/* Force full width for dashboard */
+.dashboard-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 16px 24px !important;
+  box-sizing: border-box !important;
+}
+
+.dashboard-container .MuiCard-root {
+  width: 100% !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+}
+
+.dashboard-container .MuiPaper-root {
+  width: 100% !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+}
+
+/* Force bottom spacing for System Health and Recent Activity panels */
+.dashboard-container .MuiPaper-root {
+  padding-bottom: 48px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #8FA0F5;
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: #8FA0F5;
+  color: white;
+}
+
+/* Comfortaa font for all titles */
+h1, h2, h3, h4, h5, h6,
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3,
+.MuiTypography-h4,
+.MuiTypography-h5,
+.MuiTypography-h6,
+.MuiTypography-subtitle1,
+.MuiTypography-subtitle2 {
+  font-family: 'Comfortaa', cursive !important;
+  font-weight: 600 !important;
+}
+
+/* Force input fields to be full width */
+.MuiTextField-root,
+.MuiTextField-root .MuiOutlinedInput-root,
+.MuiFormControl-root .MuiTextField-root,
+.MuiFormControl-root,
+.MuiGrid-item .MuiFormControl-root,
+.MuiGrid-item,
+input[type="text"] {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+
+/* Force grid items to take full width */
+.MuiGrid-item {
+  width: 100% !important;
+  max-width: none !important;
+  flex: 1 !important;
+}
+
+/* Override any Material-UI width restrictions */
+.MuiOutlinedInput-input {
+  width: 100% !important;
+}
+
+.MuiInputBase-root {
+  width: 100% !important;
+}

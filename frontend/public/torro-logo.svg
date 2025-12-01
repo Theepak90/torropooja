@@ -1,0 +1,10 @@
+<svg width="40" height="40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left blue pill -->
+  <rect x="30" y="30" width="120" height="300" rx="60" fill="#8B9FDE"/>
+  
+  <!-- Center orange pill -->
+  <rect x="190" y="165" width="120" height="300" rx="60" fill="#F5B967"/>
+  
+  <!-- Right red pill -->
+  <rect x="350" y="30" width="120" height="300" rx="60" fill="#E57373"/>
+</svg>
