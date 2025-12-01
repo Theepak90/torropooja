@@ -10,6 +10,7 @@ python-dotenv
 google-cloud-bigquery
 google-auth-oauthlib
 google-api-core
+google-generativeai
 requests
 APScheduler
 PyMySQL

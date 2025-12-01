@@ -51,6 +51,7 @@ import {
   AddCircle,
   Delete,
 } from '@mui/icons-material';
+import AssetsChatbot from '../components/AssetsChatbot';
 
 const AssetsPage = () => {
   const [assets, setAssets] = useState([]);
@@ -1683,6 +1684,9 @@ const AssetsPage = () => {
           No new notifications available
         </Alert>
       </Snackbar>
+
+      {/* AI Chatbot Assistant */}
+      <AssetsChatbot assets={allAssets.length > 0 ? allAssets : assets} />
     </Box>
   );
 };

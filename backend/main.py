@@ -7,6 +7,7 @@ import tempfile
 import os
 import threading
 import time
+import requests
 from functools import lru_cache
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -3101,6 +3102,75 @@ def create_app():
                 'total_documented': 0,
                 'by_entity_type': {},
                 'error': str(e)
+            }), 500
+
+    @app.route("/api/gemini/chat", methods=["POST"])
+    def gemini_chat():
+        """Proxy endpoint for Gemini API to avoid CORS issues"""
+        try:
+            GEMINI_API_KEY = 'AIzaSyBJ8pkdApodvz4P6_7fzuZH3lS55hPLzgU'
+            
+            data = request.get_json()
+            if not data or 'prompt' not in data:
+                return jsonify({'error': 'Missing prompt in request'}), 400
+            
+            prompt = data['prompt']
+            
+            # Use REST API with v1beta and gemini-2.5-flash (available model)
+            api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+            payload = {
+                "contents": [{
+                    "parts": [{"text": prompt}]
+                }]
+            }
+            
+            response = requests.post(
+                api_url, 
+                json=payload, 
+                headers={'Content-Type': 'application/json'}, 
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                bot_response = (
+                    result.get('candidates', [{}])[0]
+                    .get('content', {})
+                    .get('parts', [{}])[0]
+                    .get('text', "I'm sorry, I couldn't generate a response.")
+                )
+                return jsonify({
+                    'success': True,
+                    'response': bot_response
+                })
+            else:
+                error_data = response.json() if response.text else {}
+                error_msg = error_data.get('error', {}).get('message', response.text[:200])
+                return jsonify({
+                    'success': False,
+                    'error': f'API error {response.status_code}: {error_msg}'
+                }), response.status_code
+                
+        except requests.exceptions.RequestException as e:
+            return jsonify({
+                'success': False,
+                'error': f'Request error: {str(e)}'
+            }), 500
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return jsonify({
+                'success': False,
+                'error': f'Internal error: {str(e)}'
+            }), 500
+            
+        except Exception as e:
+            print(f"Error in Gemini API proxy: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return jsonify({
+                'success': False,
+                'error': f'Internal server error: {str(e)}'
             }), 500
 
     @app.route("/api/assets", methods=["GET"])
